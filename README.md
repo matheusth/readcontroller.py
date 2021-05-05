@@ -14,7 +14,7 @@ $ git clone --depth 1 $repo_url$
 - Enter the repository folder and run the `main.py` file:
 ```bash
 $ cd reading-controller
-$ python main.py
+$ python src/main.py
 ```
 ## Commands
 - To register just execute the command ``new book`` and the script will ask you for the books information:
