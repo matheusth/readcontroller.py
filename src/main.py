@@ -1,6 +1,6 @@
 from book import Book
-import pprint
-import utils
+import utils.file_handler as fileh
+import utils.help as helper
 bookList = []
 
 
@@ -19,21 +19,22 @@ def command_handler(command_line: str) -> None:
             list_books()
 
         if parsed_command[0] == 'export':
-            utils.write_file(parsed_command[1], bookList)
+            fileh.write_file(parsed_command[1], bookList)
 
         if parsed_command[0] == 'import':
             import_books(parsed_command[1])
 
         if parsed_command[0] == 'help':
-            pprint.pprint(utils.commands)
+            helper.print_help(
+                    parsed_command[1] if len(parsed_command) > 1 else None)
 
     except IndexError:
-        print('[ERROR::COMMAND_HANDLER] command invalid! Type "help"',
+        print('[ERROR::COMMAND_HANDLER] Command invalid! Type "help"',
               'to see the available commands')
 
 
 def import_books(file_path: str) -> None:
-    imported_list = utils.read_file(file_path)
+    imported_list = fileh.read_file(file_path)
     if imported_list:
         [bookList.append(book) for book in imported_list]
 
