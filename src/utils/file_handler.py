@@ -1,24 +1,24 @@
 from book import Book
 
 commands = {
-        'new book': 'create a new book',
-        'remove book': 'remove a book',
-        'list': 'list the books',
-        'export <filepath_here>': 'export the book list creating a new file)',
-        'import <filepath_here>': 'import a file into the book list'
-        }
-
+    'new book': 'create a new book',
+    'remove book': 'remove a book',
+    'list': 'list the books',
+    'export <filepath_here>': 'export the book list creating a new file)',
+    'import <filepath_here>': 'import a file into the book list'
+}
 
 
 def write_file(path: str, bookList: list[Book]) -> None:
     try:
         file = open(path, mode='x')
         for book in bookList:
-            file.write(f'{book.name},{book.author},{book.edition}, {book.currentChapter}')
+            file.write(
+                f'{book.name},{book.author},{book.edition}, {book.currentChapter}')
         file.flush()
         file.close()
-    except FileExistsError as err:
-        print(f'[ERR]{err}')
+    except FileExistsError:
+        print('[ERR::FILE_EXISTIS] File with that path already existis')
 
 
 def read_file(path):
